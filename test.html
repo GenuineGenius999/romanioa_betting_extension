@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superbet Tennis Extension Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .test-title {
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .test-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .test-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .test-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .status.success {
+            background: #e8f5e8;
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+        .status.error {
+            background: #ffebee;
+            color: #f44336;
+            border: 1px solid #f44336;
+        }
+        .mock-tennis-match {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+        .mock-match-title {
+            font-weight: bold;
+            color: #333;
+        }
+        .mock-match-score {
+            color: #667eea;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎾 Superbet Tennis Extension Test</h1>
+        <p>This page helps you test the Superbet Tennis Extension functionality.</p>
+
+        <div class="test-section">
+            <div class="test-title">Extension Status</div>
+            <div class="test-description">
+                Check if the extension is properly loaded and functioning.
+            </div>
+            <button class="test-button" onclick="checkExtensionStatus()">Check Extension Status</button>
+            <div id="extension-status"></div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Tennis Match Detection</div>
+            <div class="test-description">
+                Test the extension's ability to detect tennis matches on the page.
+            </div>
+            <button class="test-button" onclick="addMockTennisMatches()">Add Mock Tennis Matches</button>
+            <button class="test-button" onclick="removeMockTennisMatches()">Remove Mock Matches</button>
+            <div id="mock-matches-container"></div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">WTA Section Management</div>
+            <div class="test-description">
+                Test the WTA section hiding and highlighting functionality.
+            </div>
+            <button class="test-button" onclick="addMockWTASections()">Add Mock WTA Sections</button>
+            <button class="test-button" onclick="testWTAManagement()">Test WTA Management</button>
+            <div id="wta-test-container"></div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Extension Features</div>
+            <div class="test-description">
+                Test various extension features and functionality.
+            </div>
+            <button class="test-button" onclick="testTennisPanel()">Test Tennis Panel</button>
+            <button class="test-button" onclick="testNotifications()">Test Notifications</button>
+            <button class="test-button" onclick="testOddsTracking()">Test Odds Tracking</button>
+            <div id="features-test-container"></div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Real Superbet Test</div>
+            <div class="test-description">
+                Open the actual Superbet tennis live page to test the extension in a real environment.
+            </div>
+            <button class="test-button" onclick="openSuperbetTennis()">Open Superbet Tennis Live</button>
+            <p><strong>Note:</strong> Make sure the extension is installed and enabled in Chrome.</p>
+        </div>
+    </div>
+
+    <script>
+        // Check extension status
+        function checkExtensionStatus() {
+            const statusDiv = document.getElementById('extension-status');
+            
+            // Check if extension is available
+            if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
+                chrome.runtime.sendMessage({ action: 'getPageData' }, (response) => {
+                    if (response) {
+                        statusDiv.innerHTML = `
+                            <div class="status success">
+                                ✅ Extension is working!<br>
+                                URL: ${response.url}<br>
+                                Page Type: ${response.isTennisLive ? 'Tennis Live' : 'Other'}<br>
+                                Live Matches: ${response.liveMatches}
+                            </div>
+                        `;
+                    } else {
+                        statusDiv.innerHTML = `
+                            <div class="status error">
+                                ❌ Extension not responding
+                            </div>
+                        `;
+                    }
+                });
+            } else {
+                statusDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Extension not detected. Make sure it's installed and enabled.
+                    </div>
+                `;
+            }
+        }
+
+        // Add mock tennis matches
+        function addMockTennisMatches() {
+            const container = document.getElementById('mock-matches-container');
+            const matches = [
+                { title: 'Djokovic vs Nadal', score: '6-4, 3-2' },
+                { title: 'Federer vs Murray', score: '7-5, 4-1' },
+                { title: 'Medvedev vs Tsitsipas', score: '5-7, 6-3' }
+            ];
+
+            let html = '<h4>Mock Tennis Matches:</h4>';
+            matches.forEach((match, index) => {
+                html += `
+                    <div class="mock-tennis-match" data-sport="tennis">
+                        <div class="mock-match-title">${match.title}</div>
+                        <div class="mock-match-score">${match.score}</div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            showStatus('Mock tennis matches added successfully!', 'success');
+        }
+
+        // Remove mock tennis matches
+        function removeMockTennisMatches() {
+            const container = document.getElementById('mock-matches-container');
+            container.innerHTML = '';
+            showStatus('Mock tennis matches removed!', 'success');
+        }
+
+        // Add mock WTA sections
+        function addMockWTASections() {
+            const container = document.getElementById('wta-test-container');
+            const wtaSections = [
+                'WTA - Australian Open',
+                'WTA - French Open',
+                'WTA - Wimbledon'
+            ];
+
+            let html = '<h4>Mock WTA Sections:</h4>';
+            wtaSections.forEach(section => {
+                html += `
+                    <div class="mock-tennis-match vue-recycle-scroller__item-view">
+                        <div class="mock-match-title">${section}</div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            showStatus('Mock WTA sections added!', 'success');
+        }
+
+        // Test WTA management
+        function testWTAManagement() {
+            const wtaElements = document.querySelectorAll('.vue-recycle-scroller__item-view');
+            let hiddenCount = 0;
+            let highlightedCount = 0;
+
+            wtaElements.forEach(element => {
+                if (element.textContent && element.textContent.toUpperCase().includes('WTA')) {
+                    // Test hiding
+                    element.style.display = 'none';
+                    element.classList.add('wta-hidden');
+                    hiddenCount++;
+
+                    // Test highlighting
+                    element.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+                    element.style.border = '2px solid rgba(255, 0, 0, 0.3)';
+                    element.classList.add('wta-highlighted');
+                    highlightedCount++;
+                }
+            });
+
+            showStatus(`WTA management test: ${hiddenCount} sections hidden, ${highlightedCount} highlighted`, 'success');
+        }
+
+        // Test tennis panel
+        function testTennisPanel() {
+            const container = document.getElementById('features-test-container');
+            
+            // Create a mock tennis panel
+            const panel = document.createElement('div');
+            panel.id = 'superbet-tennis-panel';
+            panel.innerHTML = `
+                <div class="tennis-panel-header">
+                    <h3>🎾 Tennis Live (Test)</h3>
+                    <button class="close-btn" onclick="this.parentElement.parentElement.remove()">×</button>
+                </div>
+                <div class="tennis-panel-content">
+                    <div class="match-counter">
+                        <span>3</span> live matches
+                    </div>
+                    <div class="quick-actions">
+                        <button class="action-btn">Refresh</button>
+                        <button class="action-btn">Track Odds</button>
+                    </div>
+                    <div class="matches-list">
+                        <div class="match-item">
+                            <div class="match-title">Test Match 1</div>
+                            <div class="match-score">6-4, 3-2</div>
+                            <button class="track-match-btn">Track</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            panel.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 320px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 10000;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            `;
+            
+            document.body.appendChild(panel);
+            showStatus('Tennis panel test created!', 'success');
+        }
+
+        // Test notifications
+        function testNotifications() {
+            if ('Notification' in window) {
+                if (Notification.permission === 'granted') {
+                    new Notification('Tennis Extension Test', {
+                        body: 'This is a test notification from the Tennis Extension',
+                        icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50%" x="50%" text-anchor="middle" dy=".3em" font-size="60">🎾</text></svg>'
+                    });
+                    showStatus('Test notification sent!', 'success');
+                } else {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === 'granted') {
+                            testNotifications();
+                        } else {
+                            showStatus('Notification permission denied', 'error');
+                        }
+                    });
+                }
+            } else {
+                showStatus('Notifications not supported in this browser', 'error');
+            }
+        }
+
+        // Test odds tracking
+        function testOddsTracking() {
+            const container = document.getElementById('features-test-container');
+            container.innerHTML = '<div class="status success">Odds tracking simulation started...</div>';
+            
+            // Simulate odds tracking
+            let count = 0;
+            const interval = setInterval(() => {
+                count++;
+                container.innerHTML = `<div class="status success">Odds tracking: ${count} updates received</div>`;
+                
+                if (count >= 5) {
+                    clearInterval(interval);
+                    container.innerHTML = '<div class="status success">Odds tracking test completed!</div>';
+                }
+            }, 1000);
+        }
+
+        // Open Superbet tennis live page
+        function openSuperbetTennis() {
+            window.open('https://superbet.ro/pariuri-sportive/tenis/live', '_blank');
+        }
+
+        // Helper function to show status
+        function showStatus(message, type) {
+            const container = document.getElementById('features-test-container');
+            container.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+
+        // Auto-check extension status on page load
+        window.addEventListener('load', () => {
+            setTimeout(checkExtensionStatus, 1000);
+        });
+    </script>
+</body>
+</html> 

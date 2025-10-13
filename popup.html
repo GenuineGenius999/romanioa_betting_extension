@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superbet Tennis Extension</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <h1>🎾 Tennis Live</h1>
+      <div class="status-indicator" id="statusIndicator"></div>
+    </header>
+
+    <main class="popup-content">
+      <div class="section">
+        <h3>Extension Status</h3>
+        <label class="toggle-label">
+          <input type="checkbox" id="enableToggle">
+          <span class="toggle-slider"></span>
+          <span class="toggle-text">Enable Extension</span>
+        </label>
+      </div>
+
+             <div class="section">
+         <h3>Tennis Live Features</h3>
+         <div class="setting-item">
+           <label class="toggle-label">
+             <input type="checkbox" id="oddsTrackingToggle">
+             <span class="toggle-slider"></span>
+             <span class="toggle-text">Track Odds Changes</span>
+           </label>
+         </div>
+         <div class="setting-item">
+           <label class="toggle-label">
+             <input type="checkbox" id="notificationsToggle">
+             <span class="toggle-slider"></span>
+             <span class="toggle-text">Match Notifications</span>
+           </label>
+         </div>
+       </div>
+
+      <div class="section">
+        <h3>Page Information</h3>
+        <div id="pageInfo" class="page-info">
+          <p>Loading...</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Quick Actions</h3>
+        <button id="refreshBtn" class="action-button">Refresh Matches</button>
+        <button id="openPanelBtn" class="action-button">Open Tennis Panel</button>
+        <button id="clickGameBtn" class="action-button">Click Game</button>
+        <button id="clickOddBtn" class="action-button">Click Odd</button>
+        <button id="clickPrimaryBtn" class="action-button">Click Primary</button>
+        <button id="clickModalFooterBtn" class="action-button">Click Modal Footer</button>
+        <button id="navigateOpenBetsBtn" class="action-button">Go to Open Bets</button>
+        <button id="clickBetListBtn" class="action-button">Click Bet List</button>
+        <button id="clickGreenBtn" class="action-button">Click Green Button</button>
+        <button id="settingsBtn" class="action-button secondary">Settings</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

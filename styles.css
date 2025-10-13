@@ -1,0 +1,400 @@
+/* Styles for Superbet Extension */
+
+/* Popup Styles */
+.popup-container {
+  width: 350px;
+  min-height: 400px;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.popup-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.popup-header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.status-indicator.active {
+  background-color: #4CAF50;
+}
+
+.status-indicator.inactive {
+  background-color: #f44336;
+}
+
+.popup-content {
+  padding: 20px;
+}
+
+.section {
+  margin-bottom: 25px;
+}
+
+.section h3 {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Toggle Switch Styles */
+.toggle-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.toggle-label input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-slider {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 12px;
+  transition: background-color 0.3s;
+  margin-right: 12px;
+}
+
+.toggle-slider:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-label input[type="checkbox"]:checked + .toggle-slider {
+  background-color: #4CAF50;
+}
+
+.toggle-label input[type="checkbox"]:checked + .toggle-slider:before {
+  transform: translateX(26px);
+}
+
+.toggle-text {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.setting-item {
+  margin-bottom: 8px;
+}
+
+.page-info {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 15px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.info-item {
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-item strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.action-button {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.action-button.secondary {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+}
+
+.action-button.secondary:hover {
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+/* Tennis Panel Styles */
+#superbet-tennis-panel {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  border: 1px solid #e0e0e0;
+}
+
+.tennis-panel-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.tennis-panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tennis-panel-content {
+  padding: 20px;
+  background: white;
+  border-radius: 0 0 8px 8px;
+}
+
+.match-counter {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.match-counter span {
+  color: #667eea;
+  font-size: 18px;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  flex: 1;
+  min-width: 80px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.matches-list {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.match-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.3s;
+}
+
+.match-item:last-child {
+  border-bottom: none;
+}
+
+.match-item:hover {
+  background-color: #f8f9fa;
+}
+
+.match-title {
+  flex: 1;
+  font-weight: 500;
+  color: #333;
+  font-size: 13px;
+  margin-right: 10px;
+}
+
+.match-score {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.track-match-btn {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.track-match-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+}
+
+/* Tennis Button Styles */
+#superbet-tennis-btn {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: all 0.3s ease;
+}
+
+#superbet-tennis-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.3);
+}
+
+/* WTA Section Styles */
+.wta-hidden {
+  display: none !important;
+}
+
+.wta-highlighted {
+  background-color: rgba(255, 0, 0, 0.1) !important;
+  border: 2px solid rgba(255, 0, 0, 0.3) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+  .popup-container {
+    width: 320px;
+  }
+  
+  .popup-content {
+    padding: 15px;
+  }
+  
+  .action-button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  #superbet-tennis-panel {
+    width: 280px !important;
+    right: 10px !important;
+  }
+  
+  .quick-actions {
+    flex-direction: column;
+  }
+  
+  .action-btn {
+    min-width: auto;
+  }
+}
+
+/* Loading States */
+.loading {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+.error {
+  color: #f44336;
+  background: #ffebee;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.success {
+  color: #4CAF50;
+  background: #e8f5e8;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+/* Scrollbar Styling */
+.matches-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.matches-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.matches-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.matches-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+} 
